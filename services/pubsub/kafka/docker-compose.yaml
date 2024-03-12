@@ -1,0 +1,8 @@
+version: "3"
+services:
+  rabbitmq:
+    image: apache/kafka
+    container_name: kafka
+    restart: on-failure
+    ports:
+      - 9092:9092
