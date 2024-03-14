@@ -1,0 +1,9 @@
+version: "3"
+services:
+  surrealdb:
+    image: surrealdb/surrealdb
+    container_name: surrealdb
+    restart: on-failure
+    ports:
+      - 8000:8000
+    command: ["start", "memory", "-A"]
