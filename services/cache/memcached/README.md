@@ -1,0 +1,1 @@
+See: https://www.digitalocean.com/community/tutorials/memcached-telnet-commands-example
