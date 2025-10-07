@@ -1,0 +1,14 @@
+services:
+  mimir:
+    image: grafana/mimir:latest
+    networks:
+      - grafanet
+    ports:
+      - "9009:9009"
+    command:
+      - "--config.file=/etc/mimir/demo.yaml"
+    volumes:
+      - ./demo.yaml:/etc/mimir/demo.yaml
+
+networks:
+  grafanet:
