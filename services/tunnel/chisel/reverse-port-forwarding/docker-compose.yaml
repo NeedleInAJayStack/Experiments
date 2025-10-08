@@ -1,0 +1,13 @@
+# Reverse port forward (tunnels requests to server to client):
+# 1. Client reaches out to server and connects.
+# 2. Request to server:2222 -> client -> localhost:8083
+
+services:
+  server:
+    image: jpillora/chisel
+    command: "server --port 9009 --reverse"
+    ports:
+      - "2222:2222"
+  client:
+    image: jpillora/chisel
+    command: "client http://server:9009 R:2222:host.docker.internal:8083"

@@ -1,0 +1,13 @@
+# Port forward (tunnels requests to client to server):
+# 1. Client reaches out to server and connects.
+# 2. Request to client:9009 -> server -> http://example.com
+
+services:
+  server:
+    image: jpillora/chisel
+    command: "server --port 9009 --proxy http://example.com"
+  client:
+    image: jpillora/chisel
+    ports:
+      - "9009:9009"
+    command: "client http://server:9009 9009"
