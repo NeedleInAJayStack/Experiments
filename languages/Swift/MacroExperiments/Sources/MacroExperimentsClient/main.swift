@@ -1,20 +1,22 @@
 import MacroExperiments
 
+// stringify
 let a = 17
 let b = 25
-
 let (result, code) = #stringify(a + b)
-
 print("The value \(result) was produced by the code \"\(code)\"")
 
+// canPrintFive
 @canPrintFive
 struct Foo {}
 Foo().printFive()
 
+// printInt
 @printInt(42)
 struct Bar {}
 Bar().printInt()
 
+// basicType
 enum Namespace {
     #basicType(named: "Person")
 }
