@@ -25,9 +25,26 @@ public struct StringifyMacro: ExpressionMacro {
     }
 }
 
+/// Adds a `printFive()` function to any type, that when called will print `five`
+public struct CanPrintFiveMacro: MemberMacro {
+    public static func expansion(
+        of node: AttributeSyntax,
+        providingMembersOf declaration: some DeclGroupSyntax,
+        conformingTo protocols: [TypeSyntax],
+        in context: some MacroExpansionContext
+    ) throws -> [DeclSyntax] {
+        return ["""
+        func printFive() {
+            print("five")
+        }
+        """]
+    }
+}
+
 @main
 struct MacroExperimentsPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         StringifyMacro.self,
+        CanPrintFiveMacro.self,
     ]
 }

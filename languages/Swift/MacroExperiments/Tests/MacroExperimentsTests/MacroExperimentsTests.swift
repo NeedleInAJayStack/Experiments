@@ -45,4 +45,25 @@ final class MacroExperimentsTests: XCTestCase {
         throw XCTSkip("macros are only supported when running tests for the host platform")
         #endif
     }
+
+    func testCanPrintFiveMacro() throws {
+        #if canImport(MacroExperimentsMacros)
+        assertMacroExpansion(
+            #"""
+            @canPrintFive
+            struct A {}
+            """#,
+            expandedSource: #"""
+            struct A {
+                func printFive() -> String {
+                    print("five")
+                }
+            }
+            """#,
+            macros: testMacros
+        )
+        #else
+        throw XCTSkip("macros are only supported when running tests for the host platform")
+        #endif
+    }
 }
