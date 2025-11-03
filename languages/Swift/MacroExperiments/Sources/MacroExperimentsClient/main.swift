@@ -9,6 +9,8 @@ print("The value \(result) was produced by the code \"\(code)\"")
 
 @canPrintFive
 struct Foo {}
+Foo().printFive()
 
-let foo = Foo()
-foo.printFive()
+@printInt(42)
+struct Bar {}
+Bar().printInt()

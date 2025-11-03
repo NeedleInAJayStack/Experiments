@@ -12,3 +12,6 @@ public macro stringify<T>(_ value: T) -> (T, String) = #externalMacro(module: "M
 
 @attached(member, names: named(printFive))
 public macro canPrintFive() = #externalMacro(module: "MacroExperimentsMacros", type: "CanPrintFiveMacro")
+
+@attached(member, names: named(printInt))
+public macro printInt(_ int: Int) = #externalMacro(module: "MacroExperimentsMacros", type: "PrintIntMacro")
