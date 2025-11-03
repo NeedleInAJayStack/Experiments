@@ -73,10 +73,13 @@ public struct BasicTypeMacro: DeclarationMacro {
 
         return ["""
         struct \(raw: argument) {
-            let a: String
+            \(raw: stringProperty(named: "a"))
         }
         """]
     }
+}
+private func stringProperty(named: String) -> String {
+    return "let \(named): String"
 }
 
 @main

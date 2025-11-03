@@ -10,6 +10,7 @@ import MacroExperimentsMacros
 
 let testMacros: [String: Macro.Type] = [
     "stringify": StringifyMacro.self,
+    "canPrintFive": CanPrintFiveMacro.self,
 ]
 #endif
 
@@ -55,7 +56,8 @@ final class MacroExperimentsTests: XCTestCase {
             """#,
             expandedSource: #"""
             struct A {
-                func printFive() -> String {
+
+                func printFive() {
                     print("five")
                 }
             }
