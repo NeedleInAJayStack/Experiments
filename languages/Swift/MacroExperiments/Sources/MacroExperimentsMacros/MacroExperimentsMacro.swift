@@ -62,16 +62,20 @@ public struct PrintIntMacro: MemberMacro {
 }
 
 /// Creates a basic type with the name passed that has a single string member named `a`
-public struct BasicTypeMacro: ExpressionMacro {
+public struct BasicTypeMacro: DeclarationMacro {
     public static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
-    ) -> ExprSyntax {
-        guard let argument = node.arguments.first?.expression else {
+    ) throws -> [DeclSyntax] {
+        guard let argument = node.arguments.first?.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue else {
             fatalError("compiler bug: the macro does not have any arguments")
         }
 
-        return "(\(argument), \(literal: argument.description))"
+        return ["""
+        struct \(raw: argument) {
+            let a: String
+        }
+        """]
     }
 }
 
@@ -81,5 +85,6 @@ struct MacroExperimentsPlugin: CompilerPlugin {
         StringifyMacro.self,
         CanPrintFiveMacro.self,
         PrintIntMacro.self,
+        BasicTypeMacro.self,
     ]
 }

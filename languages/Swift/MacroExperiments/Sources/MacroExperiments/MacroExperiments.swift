@@ -15,3 +15,8 @@ public macro canPrintFive() = #externalMacro(module: "MacroExperimentsMacros", t
 
 @attached(member, names: named(printInt))
 public macro printInt(_ int: Int) = #externalMacro(module: "MacroExperimentsMacros", type: "PrintIntMacro")
+
+/// A macro that creates a basic type with a single `a` property. Due to Swift macro protections, this cannot be created
+/// in a global scope.
+@freestanding(declaration, names: arbitrary)
+public macro basicType(named: String) = #externalMacro(module: "MacroExperimentsMacros", type: "BasicTypeMacro")

@@ -14,3 +14,9 @@ Foo().printFive()
 @printInt(42)
 struct Bar {}
 Bar().printInt()
+
+enum Namespace {
+    #basicType(named: "Person")
+}
+let p = Namespace.Person(a: "abc")
+print(p.a)
