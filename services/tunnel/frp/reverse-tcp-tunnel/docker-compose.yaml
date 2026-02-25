@@ -1,0 +1,20 @@
+# Reverse port forward (tunnels requests to server to client):
+# 1. Client reaches out to server and connects.
+# 2. Request to server:2222 -> client -> localhost:8083
+
+services:
+  server:
+    image: ghcr.io/fatedier/frps:v0.67.0
+    command: "-c /frps.toml"
+    ports:
+      - "9083:9083"
+      - "7500:7500" # For admin dashboard
+    volumes:
+      - './frps.toml:/frps.toml:ro'
+  client:
+    image: ghcr.io/fatedier/frpc:v0.67.0
+    command: "-c /frpc.toml"
+    volumes:
+      - './frpc.toml:/frpc.toml:ro'
+    depends_on:
+      - server

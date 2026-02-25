@@ -1,0 +1,10 @@
+# https://github.com/fatedier/frp/blob/dev/conf/frpc_full_example.toml
+serverAddr = "server"
+serverPort = 7000
+
+[[proxies]]
+name = "http"
+type = "http"
+localIP = "host.docker.internal"
+localPort = 8083
+customDomains = ["frpc.localhost"]

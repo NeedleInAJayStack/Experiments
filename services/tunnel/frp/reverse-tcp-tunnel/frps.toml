@@ -1,0 +1,6 @@
+# https://github.com/fatedier/frp/blob/dev/conf/frps_full_example.toml
+bindPort = 7000
+
+# Expose admin dashboard
+webServer.addr = "0.0.0.0"
+webServer.port = 7500
